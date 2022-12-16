@@ -1,7 +1,8 @@
 package LeapYear;
 
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class LeapYearGUI extends JFrame {
     private JPanel pnlMain;
@@ -21,36 +22,24 @@ public class LeapYearGUI extends JFrame {
         btnCheckYear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int year = Integer.parseInt(tfYear.getText());
-                if (year % 4 == 0) {
-                    JOptionPane.showMessageDialog(pnlMain, "Leap year");
-                } else {
-                    JOptionPane.showMessageDialog(pnlMain, "Not a leap year");
-                }
-            }
-        });
-
-        tfYear.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                //none
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+                try {
                     int year = Integer.parseInt(tfYear.getText());
                     if (year % 4 == 0) {
-                        JOptionPane.showMessageDialog(pnlMain, "Leap year");
+                        if (year % 100 == 0) {
+                            if (year % 400 == 0) {
+                                JOptionPane.showMessageDialog(pnlMain, "Leap year");
+                            } else {
+                                JOptionPane.showMessageDialog(pnlMain, "Leap year");
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(pnlMain, "Leap year");
+                        }
                     } else {
-                        JOptionPane.showMessageDialog(pnlMain, "Not a leap year");
+                        JOptionPane.showMessageDialog(pnlMain, "Not a leap year.");
                     }
+                } catch (NumberFormatException exception) {
+                    JOptionPane.showMessageDialog(pnlMain, "Please enter a valid year.");
                 }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                //none
             }
         });
     }
