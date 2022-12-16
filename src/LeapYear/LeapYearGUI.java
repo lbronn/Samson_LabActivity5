@@ -1,6 +1,7 @@
 package LeapYear;
 
 import javax.swing.*;
+import java.awt.event.*;
 
 public class LeapYearGUI extends JFrame {
     private JPanel pnlMain;
@@ -14,5 +15,19 @@ public class LeapYearGUI extends JFrame {
         app.setTitle("Leap Year Checker");
         app.setDefaultCloseOperation(EXIT_ON_CLOSE);
         app.setVisible(true);
+    }
+
+    public LeapYearGUI() {
+        btnCheckYear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int year = Integer.parseInt(tfYear.getText());
+                if (year % 4 == 0) {
+                    JOptionPane.showMessageDialog(pnlMain, "Leap year");
+                } else {
+                    JOptionPane.showMessageDialog(pnlMain, "Not a leap year");
+                }
+            }
+        });
     }
 }
