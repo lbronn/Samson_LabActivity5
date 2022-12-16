@@ -29,5 +29,29 @@ public class LeapYearGUI extends JFrame {
                 }
             }
         });
+
+        tfYear.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                //none
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    int year = Integer.parseInt(tfYear.getText());
+                    if (year % 4 == 0) {
+                        JOptionPane.showMessageDialog(pnlMain, "Leap year");
+                    } else {
+                        JOptionPane.showMessageDialog(pnlMain, "Not a leap year");
+                    }
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                //none
+            }
+        });
     }
 }
