@@ -26,22 +26,35 @@ public class SimpleCalcGUI extends JFrame {
         btnCompute.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                double num1 = Double.parseDouble(tfNumber1.getText());
-                double num2 = Double.parseDouble(tfNumber2.getText());
-                String operation = cbOperations.getSelectedItem().toString();
-                switch(operation) {
-                    case "+":
-                        tfResult.setText(String.valueOf(num1 + num2));
-                        break;
-                    case "-":
-                        tfResult.setText(String.valueOf(num1 - num2));
-                        break;
-                    case "*":
-                        tfResult.setText(String.valueOf(num1 * num2));
-                        break;
-                    case "/":
-                        tfResult.setText(String.valueOf(num1 / num2));
-                        break;
+                try {
+                    double num1 = Double.parseDouble(tfNumber1.getText());
+                    double num2 = Double.parseDouble(tfNumber2.getText());
+                    String operation = cbOperations.getSelectedItem().toString();
+                    switch (operation) {
+                        case "+":
+                            tfResult.setText(String.valueOf(num1 + num2));
+                            break;
+                        case "-":
+                            tfResult.setText(String.valueOf(num1 - num2));
+                            break;
+                        case "*":
+                            tfResult.setText(String.valueOf(num1 * num2));
+                            break;
+                        case "/":
+                            tfResult.setText(String.valueOf(num1 / num2));
+                            if(num2 == 0) {
+                                tfResult.setText("Syntax Error");
+                            }
+                            break;
+                    }
+
+                    if(num2 == 0 && operation.equals("/")) {
+                        throw new ArithmeticException("Invalid operation. Please try again.");
+                    }
+                } catch (NumberFormatException exception) {
+                    JOptionPane.showMessageDialog(pnlMain, "Input must be a number.");
+                } catch (ArithmeticException exception) {
+                    JOptionPane.showMessageDialog(pnlMain, exception.getMessage());
                 }
             }
         });

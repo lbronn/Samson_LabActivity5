@@ -41,6 +41,7 @@
                 </constraints>
                 <properties>
                   <font size="16"/>
+                  <text value=""/>
                 </properties>
               </component>
             </children>
